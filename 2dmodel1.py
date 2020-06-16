@@ -18,6 +18,7 @@ Da = 1.0e-04*np.exp(-300000.0/R/temp) # diffusion coefficient of A atom [m2/s]
 Db = 2.0e-05*np.exp(-300000.0/R/temp) # diffusion coefficient of B atom [m2/s]
 dt = (dx*dx/Da)*0.1 # time increment [s]
 
+print('La== ', La)
 """
 fig = plt.figure(figsize=(5,5))
 cc = np.linspace(0.01, 0.99, 100);
@@ -120,6 +121,7 @@ plt.colorbar()
 plt.show()
 fig.savefig("initial.png",bbox_inches="tight")
 
+
 """
 fig = plt.figure(figsize=(5,5))
 for nstep in tqdm(range(1,nsteps+1)):
@@ -136,3 +138,4 @@ for nstep in tqdm(range(1,nsteps+1)):
         plt.show() 
         fig.savefig("step600.png",bbox_inches="tight")
 """
+
