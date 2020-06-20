@@ -14,7 +14,7 @@
 #define c0  0.5 //# average composition of B atom [atomic fraction]
 #define R   8.314 //# gas constant
 #define temp  673  //temperature [K]
-#define nsteps  600 //total number of time-steps
+#define nsteps  3600 //total number of time-steps
 
 
 double Uniform(){
@@ -22,7 +22,7 @@ double Uniform(){
 }
 
 
-void update_orderparameter(std::array<std::array<double, ny>, nx> c)
+void update_orderparameter(std::array<std::array<double, ny>, nx> &c)
 {
 
   std::array<std::array<double, ny>, nx> c_new;
@@ -148,6 +148,8 @@ int main()
   if(fp0==NULL){
   printf("File open faild.");
   }
+  
+  fprintf(fp0, "x\ty\tc\n");
 
   for (int j = 0; j < ny; j++){
     for (int i = 0; i < nx; i++){
@@ -173,10 +175,11 @@ for (int t =0; t < nsteps+ 1; t++){
       std::string filename;
       filename = "result"+std::to_string(t)+".dat";
       fp.open(filename, std::ios::out);
+      fp << "x" << "\t" << "y" << "\t" << "c" << std::endl;
 
       for (int j = 0; j < ny; j++){
         for (int i = 0; i < nx; i++){
-          fp << i << " " << j << " " << c_[i][j] << std::endl;
+          fp << i << "\t " << j << "\t " << c_[i][j] << std::endl;
         }
       }
       fp.close();
